@@ -1,0 +1,11 @@
+build-variables:
+    global:
+        - ROOT_PASSWORD=Mioga100Prozent
+        - ENVIRONMENT=development
+    services:
+        frontend:
+            - APIBASEURL='127.0.0.1:8080'
+            - DATABASE=lieferanten
+        backend:
+            - DB_TYPE=sqlite
+            - DATABASE=./db/database.sqlite3

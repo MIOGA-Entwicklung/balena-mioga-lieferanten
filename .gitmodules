@@ -1,0 +1,6 @@
+[submodule "balena-mioga-lieferanten-backend"]
+	path = balena-mioga-lieferanten-backend
+	url = https://github.com/MIOGA-Entwicklung/balena-mioga-lieferanten-backend/
+[submodule "balena-mioga-lieferanten-frontend"]
+	path = balena-mioga-lieferanten-frontend
+	url = https://github.com/MIOGA-Entwicklung/balena-mioga-lieferanten-frontend

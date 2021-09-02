@@ -1,0 +1,45 @@
+version: "2.1"
+volumes:
+  lieferanten-backend: {}
+  lieferanten-frontend: {}
+  lieferanten-nocodb: {}
+  openapi: {}
+
+services:
+  frontend:
+    build:
+      context: ./balena-mioga-lieferanten-frontend
+    links:
+      - "backend:database"
+    working_dir: /application/frontend
+    volumes:
+      - 'lieferanten-frontend:/application/frontend'
+    depends_on: 
+      - backend
+    restart: always
+    expose:
+      - '4200'
+    ports:
+      - '4200:4200'
+    environment:
+      - DATABASE=lieferanten
+      - APIBASEURL='http://127.0.0.1:8080'
+    labels:
+      io.balena.features.balena-socket: '1'
+      io.balena.features.procfs: '1'
+  backend:
+    build:
+      context: ./balena-mioga-lieferanten-backend
+    working_dir: /application/backend
+    volumes:
+      - 'lieferanten-backend:/application/backend'
+    expose:
+      - '8080'
+    ports:
+      - '8080:8080'
+    environment:
+      - DB_TYPE=sqlite
+      - DATABASE=./db/database.sqlite3
+    labels:
+      io.balena.features.balena-socket: '1'
+      io.balena.features.procfs: '1'
